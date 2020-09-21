@@ -1,2 +1,2 @@
-server: npx sequelize-cli db:migrate 
+server: yarn sequelize-cli db:migrate 
 web: yarn start
