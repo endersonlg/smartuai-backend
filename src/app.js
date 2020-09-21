@@ -18,11 +18,7 @@ class App {
   middlewares() {
     this.server.use(
       cors({
-        origin: [
-          'http://localhost:3000',
-          'https://smartuai.vercel.app',
-          'https://smartuai-2n7n9wmsq.vercel.app/',
-        ],
+        origin: '*',
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
         allowedHeaders: '*',
         exposedHeaders: 'x-total-count',
