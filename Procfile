@@ -1,3 +1,3 @@
-server: yarn sequelize-cli db:migrate 
+migrations: yarn sequelize db:migrate 
 seeds: yarn sequelize-cli db:seed:all 
-web: yarn start
+server: yarn start
