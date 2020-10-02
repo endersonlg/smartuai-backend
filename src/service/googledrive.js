@@ -75,16 +75,16 @@ const listFiles = auth => {
   );
 };
 
-async function imageUpload(file, callback) {
+async function imageUpload(path, name, callback) {
   authorize(credential, auth => {
     const fileMetadata = {
-      name: file.filename,
+      name,
       parents: [process.env.GOOGLE_DRIVE_PAST],
     };
 
     const media = {
-      mimeType: file.mimeType,
-      body: fs.createReadStream(file.path),
+      mimeType: 'image/png',
+      body: fs.createReadStream(path),
     };
 
     const drive = google.drive({ version: 'v3', auth });
