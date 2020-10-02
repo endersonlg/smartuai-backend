@@ -29,7 +29,4 @@ tmp/uploads/*
 
 .env
 
-#GOOGLE
-token.json
-
 dist
