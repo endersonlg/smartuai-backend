@@ -199,6 +199,8 @@ class DeviceController {
         'street',
         'time_average',
         'active',
+        'latitude',
+        'longitude',
       ],
       include: [
         {

@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import multer from 'multer';
+// import fs from 'fs';
 import multerConfig from './config/multer';
-
 import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
 import CityController from './app/controllers/CityController';
@@ -16,6 +16,7 @@ import TodoController from './app/controllers/TodoController';
 import StatusController from './app/controllers/StatusController';
 
 const routes = new Router();
+
 const upload = multer(multerConfig);
 
 routes.get('/states', StateController.listStates);
@@ -29,6 +30,7 @@ routes.post('/cities', CityController.store);
 routes.get('/cities/:id', CityController.index);
 
 routes.post('/files', upload.single('file'), FileController.store);
+// routes.post('/files', FileController.store);
 
 routes.post('/history', StatusController.store);
 
