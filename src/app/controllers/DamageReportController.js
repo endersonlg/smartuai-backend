@@ -161,6 +161,34 @@ class DamageReportController {
     return response.status(200).json(damageReport);
   }
 
+  async indexUser(request, response) {
+    const { id } = request.params;
+
+    const user = await User.findByPk(id);
+
+    if (!user) {
+      return response.status(400).json({ error: 'Usuário não existe' });
+    }
+
+    const damageReport = await DamageReport.findAll({
+      attributes: [
+        'id',
+        'description',
+        'damage_percentage',
+        'assumption',
+        'repair_date_time',
+        'situation',
+        'createdAt',
+        'updatedAt',
+      ],
+      where: {
+        user_id: id,
+      },
+    });
+
+    return response.status(200).json(damageReport);
+  }
+
   async update(request, response) {
     const schema = Yup.object().shape({
       description: Yup.string()

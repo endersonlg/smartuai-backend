@@ -71,6 +71,7 @@ routes.get(
 routes.post('/damageReports', DamageReportController.store);
 routes.get('/damageReports', DamageReportController.list);
 routes.get('/damageReports/:id', DamageReportController.index);
+routes.get('/damageReports/user/:id', DamageReportController.indexUser);
 routes.put('/damageReports/:id', DamageReportController.update);
 
 routes.get('/todo', TodoController.list);
