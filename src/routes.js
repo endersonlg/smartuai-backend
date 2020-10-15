@@ -61,6 +61,7 @@ routes.get(
 );
 routes.post('/suggestions', SuggestionController.store);
 routes.get('/suggestions', SuggestionController.list);
+routes.get('/suggestions/user/:id', SuggestionController.indexUser);
 routes.get('/suggestions/:id', SuggestionController.index);
 routes.put('/suggestions/:id', SuggestionController.update);
 

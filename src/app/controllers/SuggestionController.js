@@ -157,6 +157,37 @@ class SuggestionController {
     return response.status(200).json(suggestion);
   }
 
+  async indexUser(request, response) {
+    const { id } = request.params;
+
+    const user = await User.findByPk(id);
+
+    if (!user) {
+      return response.status(400).json({ error: 'Usuário não existe' });
+    }
+
+    const suggestion = await Suggestion.findAll({
+      attributes: [
+        'id',
+        'solicitation',
+        'description',
+        'createdAt',
+        'reply_date_time',
+        'reason',
+        'district',
+        'street',
+        'number',
+        'latitude',
+        'longitude',
+      ],
+      where: {
+        user_id: id,
+      },
+    });
+
+    return response.status(200).json(suggestion);
+  }
+
   async update(request, response) {
     const schema = Yup.object().shape({
       district: Yup.string()
