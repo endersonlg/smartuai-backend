@@ -1,4 +1,4 @@
-migrations: yarn sequelize db:migrate 
-seeds: yarn sequelize-cli db:seed:all 
-build: yarn build
-web: yarn start
+migrations: npx sequelize db:migrate 
+seeds: npx sequelize-cli db:seed:all 
+build: npx build
+web: npx start
