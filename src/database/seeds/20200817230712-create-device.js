@@ -5,7 +5,7 @@ const faker = require('faker');
 function generateDevices() {
   const devices = [];
 
-  for (let id = 1; id <= 20; id += 1) {
+  for (let id = 1; id <= 7; id += 1) {
     const name = faker.name.findName();
     const series = faker.random.number();
     const district = faker.address.streetName();

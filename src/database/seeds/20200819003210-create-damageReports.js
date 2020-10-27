@@ -5,7 +5,7 @@ const faker = require('faker');
 function generateDamageReports() {
   const damageReports = [];
 
-  for (let id = 1; id <= 20; id += 1) {
+  for (let id = 1; id <= 5; id += 1) {
     const description = faker.random.words();
     const damage_percentage = faker.random.number(100);
     const assumption = faker.random.boolean()

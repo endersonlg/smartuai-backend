@@ -5,7 +5,7 @@ const faker = require('faker');
 function generateUsers() {
   const users = [];
 
-  for (let id = 1; id <= 25; id += 1) {
+  for (let id = 1; id <= 12; id += 1) {
     const name = faker.name.findName();
     const email = faker.internet.email();
     const password_hash = faker.internet.password();

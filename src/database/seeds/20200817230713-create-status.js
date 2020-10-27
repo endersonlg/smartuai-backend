@@ -5,7 +5,7 @@ const faker = require('faker');
 function generateStatus() {
   const status = [];
 
-  for (let id = 1; id <= 20; id += 1) {
+  for (let id = 5; id <= 12; id += 1) {
     const value = faker.random.number({ min: 1, max: 100 });
     const device_id = id;
     const created_at = faker.date.past();

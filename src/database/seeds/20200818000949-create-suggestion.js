@@ -5,7 +5,7 @@ const faker = require('faker');
 function generateSuggestions() {
   const suggestions = [];
 
-  for (let id = 1; id <= 20; id += 1) {
+  for (let id = 1; id <= 6; id += 1) {
     const district = faker.address.streetName();
     const street = faker.address.streetName();
     const number = faker.random.number();
