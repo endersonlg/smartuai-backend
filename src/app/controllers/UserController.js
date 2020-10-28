@@ -247,7 +247,7 @@ class UserController {
           attributes: ['name'],
         },
       ],
-      group: ['User.id', 'city.id'],
+      // group: ['User.id', 'city.id'],
       limit: 10,
       offset: (page - 1) * 10,
       order: ['id'],
