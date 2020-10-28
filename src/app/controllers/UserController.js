@@ -219,27 +219,27 @@ class UserController {
         'district',
         'street',
         'active',
-        [
-          Sequelize.fn('count', Sequelize.col('damageReports.id')),
-          'damageReportsLength',
-        ],
-        [
-          Sequelize.fn('count', Sequelize.col('suggestions.id')),
-          'suggestionsLength',
-        ],
+        // [
+        //   Sequelize.fn('count', Sequelize.col('damageReports.id')),
+        //   'damageReportsLength',
+        // ],
+        // [
+        //   Sequelize.fn('count', Sequelize.col('suggestions.id')),
+        //   'suggestionsLength',
+        // ],
       ],
       include: [
         {
           model: DamageReport,
           as: 'damageReports',
-          attributes: [],
-          duplicating: false,
+          attributes: ['id'],
+          // duplicating: false,
         },
         {
           model: Suggestion,
           as: 'suggestions',
-          attributes: [],
-          duplicating: false,
+          attributes: ['id'],
+          // duplicating: false,
         },
         {
           model: City,

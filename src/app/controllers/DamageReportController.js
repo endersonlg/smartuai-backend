@@ -82,6 +82,7 @@ class DamageReportController {
               as: 'status',
               order: [['id', 'DESC']],
               attributes: ['value'],
+              limit: 1,
             },
           ],
         },
