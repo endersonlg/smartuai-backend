@@ -77,6 +77,12 @@ class DamageReportController {
               as: 'city',
               attributes: ['name'],
             },
+            {
+              model: Status,
+              as: 'status',
+              order: [['id', 'DESC']],
+              limit: 1,
+            },
           ],
         },
       ],
