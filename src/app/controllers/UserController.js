@@ -366,8 +366,9 @@ class UserController {
         html: `
         Prezado ${user.name}
         <br/>
-        Houve um pedido de alteração de senha. Segue o link para alterar senha: 
-        <a>https://smartuai.vercel.app/recoverPassword/${hash}</a>
+        Houve um pedido de alteração de senha.
+        Clique <a href="https://smartuai.vercel.app/recoverPassword/${hash}">aqui</a> para redirecionar para página.
+
         `,
       });
     }
