@@ -363,11 +363,11 @@ class UserController {
         from: 'no-reply@smartuai.com',
         to: user.email,
         subject: 'Recuperação de senha - SmartUai',
-        text: `
+        html: `
         Prezado ${user.name}
-        
+        <br/>
         Houve um pedido de alteração de senha. Segue o link para alterar senha: 
-        https://smartuai.vercel.app/recovery-password/${hash}
+        <a>https://smartuai.vercel.app/recoverPassword/${hash}</a>
         `,
       });
     }
