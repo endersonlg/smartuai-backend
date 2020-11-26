@@ -19,6 +19,9 @@ const routes = new Router();
 
 const upload = multer(multerConfig);
 
+routes.post('/recovery-password-link', UserController.recoveryPasswordLink);
+routes.post('/recovery-password', UserController.recoveryPassword);
+
 routes.get('/states', StateController.listStates);
 routes.get('/states/:state', StateController.listCities);
 
@@ -30,7 +33,6 @@ routes.post('/cities', CityController.store);
 routes.get('/cities/:id', CityController.index);
 
 routes.post('/files', upload.single('file'), FileController.store);
-// routes.post('/files', FileController.store);
 
 routes.post('/history', StatusController.store);
 

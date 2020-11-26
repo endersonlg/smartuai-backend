@@ -1,12 +1,14 @@
 import Sequelize from 'sequelize';
 import * as Yup from 'yup';
-
+import jwt from 'jsonwebtoken';
 import User from '../models/User';
 import File from '../models/File';
 import City from '../models/City';
 import Suggestion from '../models/Suggestion';
 import DamageReport from '../models/DamageReport';
 import Device from '../models/Device';
+import mail from '../../config/mail';
+import authConfig from '../../config/auth';
 
 class UserController {
   async store(request, response) {
@@ -332,6 +334,77 @@ class UserController {
     });
 
     return response.status(200).json(user);
+  }
+
+  async recoveryPasswordLink(request, response) {
+    const schema = Yup.object().shape({
+      email: Yup.string()
+        .trim()
+        .email()
+        .required(),
+    });
+
+    if (!(await schema.isValid(request.body))) {
+      return response.status(400).json({
+        error: 'Falha no pedido de alteração de senha, verifique seus dados',
+      });
+    }
+
+    const { email } = request.body;
+
+    const user = await User.findOne({
+      where: { email },
+    });
+
+    const hash = jwt.sign({ id: user.id }, authConfig.secret);
+
+    if (user) {
+      await mail.sendMail({
+        from: 'no-reply@smartuai.com',
+        to: user.email,
+        subject: 'Recuperação de senha - SmartUai',
+        text: `
+        Prezado ${user.name}
+        
+        Houve um pedido de alteração de senha. Segue o link para alterar senha: 
+        https://smartuai.vercel.app/recovery-password/${hash}
+        `,
+      });
+    }
+
+    return response.status(200).send();
+  }
+
+  async recoveryPassword(request, response) {
+    const schema = Yup.object().shape({
+      hash: Yup.string().required(),
+      password: Yup.string()
+        .trim()
+        .min(8)
+        .required(),
+    });
+
+    if (!(await schema.isValid(request.body))) {
+      return response.status(400).json({
+        error: 'Falha no pedido de alteração de senha, verifique seus dados',
+      });
+    }
+
+    const { hash, password } = request.body;
+
+    const { id } = jwt.decode(hash);
+
+    if (!id) {
+      return response.status(404).json({ error: 'ID inválido' });
+    }
+
+    const user = await User.findByPk(id);
+
+    user.update({
+      password,
+    });
+
+    return response.status(200).send();
   }
 }
 
