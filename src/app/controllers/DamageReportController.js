@@ -226,6 +226,8 @@ class DamageReportController {
 
     const damageReport = await DamageReport.findByPk(id);
 
+    request.body.manager_id = request.userId;
+
     await damageReport.update(request.body);
 
     return response.status(200).send();
